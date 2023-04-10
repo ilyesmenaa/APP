@@ -1,0 +1,250 @@
+    <!-- include header -->
+<%- include('_header') %>
+<!-- /include header -->
+
+    <body >
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" onclick="readAll(); readAll2();">Ordre Mission</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="readAll();readAll2();">Ajouter donnee</a>
+           </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            
+          <div style="position: relative;" >
+          <div  style="position: relative;padding:4px 4px 4px 4px;margin:2px 2px 2px 2px ;height:244px ;width:33% ;border:1px solid gainsboro;float:left;">      
+          <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:95px">Nemuro_Ordre</label>  
+            <input onclick="getlas_ordre();" id="Nemuro_Ordre" style="font-size: 14px;width:120px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;" type="text"  class="form-control"  placeholder="..." >  
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:35px">Id</label>  
+             <input id="id" style="font-size: 14px;width:60px ;padding:0px 0px 0px 12px;height:30px;border-radius:4px 0px 0px 4px;width:30px" type="text"  class="form-control"  placeholder="id" >  
+            </div>  <!-- end --> 
+           <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+             <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:95px">Date_Ordre</label>  
+             <input id="Date_Ordre" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;" type="date"  class="form-control"   >  
+          </div>  <!-- end --> 
+          <div class="input-group" style="height:30px;margin:2px 2px 4px 2px"> 
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:95px">Nom_Prenom</label>  
+            <input    class="form-control" id="Nom_Prenom" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"  list="service11"  placeholder="..." >
+            <datalist id="service11">
+            </datalist>
+            </div>  <!-- end --> 
+        
+          <div class="input-group" style="height:30px;margin:2px 2px 4px 2px"> 
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:95px">Matricule</label>  
+             <input  onclick="get_Matricule();"  class="form-control" id="Matricule" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"     placeholder="..." >
+            </div>  <!-- end -->
+          <div class="input-group" style="height:30px;margin:2px 2px 4px 2px;">  
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:95px">Grade_Fonction</label>  
+            <input class="form-control" id="Grade_Fonction" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"   placeholder="..." >
+          </div>  <!-- end -->  
+        <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+          <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:95px">Service_attache</label>  
+           <input class="form-control" id="Service_attache" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"  list="service13"  placeholder="..." >
+           <datalist id="service13">
+           </datalist>
+        </div>  <!-- end --> 
+          <div class="btn-group d-flex">
+          <button onclick="javascript:xport.toCSV('example');" type="button" class="btn btn-outline-success btn-sm">CSV</button>
+          <button onclick = "remove()"  type="button" class="btn btn-outline-danger btn-sm">Suprimer</button>
+           <button onclick="Edit()" type="button" class="btn btn-outline-warning btn-sm">Modifier</button>
+           <button onclick="add()" type="button" class="btn btn-outline-primary btn-sm">Ajouter</button>
+          </div>  <!-- end -->
+         <div id="edura" style="margin-left:6px;z-index:3;float: left;width:fit-content;"></div>  
+        </div>
+         
+         <div  style="position: relative;padding:4px 4px 4px 4px;margin:2px 2px 2px 2px ;height:244px ;width:33% ;border:1px solid gainsboro;float:left;">  
+          <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:100px">DOT</label>  
+             <input   class="form-control" id="dot_all" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"    placeholder="DOT..." >
+             <button onclick = "PSR_impr()" style="border-radius:0px 0px 0px 0px ; padding:0px 2px 0px 2px;width:71px;height:30px;font-size:13px;" class="btn btn-outline-secondary btn-sm" type="button">Print</button>
+             <button  onclick="readAll3();getlas_ordre();"   class="btn btn-outline-warning" style="width:90px;height:30px;" data-toggle="modal"  data-target="#exampleModal2">Print_Plus</button>
+            
+         </div>  <!-- end --> 
+             
+          <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:100px">Destination</label>  
+             <input ondblclick="readAll2();"  class="form-control" id="Destination" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"  list="service14"  placeholder="..." >
+             <datalist id="service14">
+             </datalist>
+          </div>  <!-- end --> 
+         <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+          <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:100px">Date_Depart</label>  
+          <input id="Date_Depart" style="font-size: 14px;width:60px ;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;width:50px" type="date"  class="form-control"  >  
+         </div>  <!-- end --> 
+         <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+         <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:100px">Heure_Depart</label>  
+         <input min="00:00" max="23:59" required  type="time" id="Heure_Depart" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"  class="form-control"  >  
+         </div>  <!-- end --> 
+         <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+            <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:100px">Date_Retour</label>  
+            <input id="Date_Retour" style="font-size: 14px;width:60px ;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;width:50px" type="date"  class="form-control"  >  
+         </div>  <!-- end --> 
+         <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+          <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:100px">Heure_Retour</label>  
+          <input  min="00:00" max="23:59" required  type="time" id="Heure_Retour" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"   class="form-control"  >  
+          </div>  <!-- end --> 
+          <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+           <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:100px">Motif_mission</label>  
+            <input ondblclick="readAll2();"  class="form-control" id="Motif_mission" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"  list="service15"  placeholder="..." >
+            <datalist id="service15">
+            </datalist>
+            </div>  <!-- end --> 
+           </div>
+           <div  style="position: relative;padding:0px 0x  ;margin:2px 2px 2px 2px ; height:244px ;width:33% ;border:1px solid gainsboro;float:left;">      
+          <div  style="overflow: auto; width: 99%;height:99% ;max-height:99%;background-color: #bef2f4;">
+          <div id="listord" style="overflow: auto; width: 99%;height:max-content"></div>
+          <div id="listordre" style="overflow: auto; width: 99%;height:max-content"></div>
+          </div>
+          </div>
+         
+           <div id="demo3" style="position: relative;float: left;width:100%;overflow:scroll;max-width: 100%;">
+            <table id="example"  cellpadding="0" cellspacing="0" border="0" class="display" ></table>
+          </div> 
+          </div>
+          </div>
+        
+         
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">  
+            <div  style="position: relative;padding:4px 4px 4px 4px;margin:2px 2px 2px 2px ;height:136px ;width:35% ;border:1px solid gainsboro;float:left;">      
+              <div style="float: left;width: 84%;">
+               <fieldset>
+                 <legend style="font-size: 14px;">Ajouter Ordre mission</legend>
+                <div class='input-group-append' style=" margin:0px 0px ;width:70px; height: 33px;">
+                 <div class='custom-file'><input style='margin:2px 2px 0px 2px;' type='file' class='custom-file-input' id='inputGroup' onchange='loadFilesll(event)' >
+                <label value='select xls-csv' style="width:153px;font-size:11px;"  class='custom-file-label' for='addaction'><div style='font-size:12px ;' ></div></label></div></div>
+                 <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+                   <label   style="font-size: 14px; padding :2px 2px 4px 4px;height:30px;width:165px" id='filexcel1'>data:----</label><label style="font-size: 14px; color:brown;padding :2px 2px 4px 4px;height:30px;width:60px"  id="idl_2">--</label>  
+                 </div>
+                 <div class="btn-group d-flex" style="width: 289px;">
+                  <button onclick="add_all()" type="button" class="btn btn-outline-primary btn-sm">Ajouter</button>
+                  <button onclick = "readAl2()" type="button" class="btn btn-outline-info btn-sm">Refresh</button>
+                 
+              </div>
+                 </fieldset> 
+              </div>
+              </div>
+           
+            
+            <!-- end -->
+               
+               <div  style="position: relative;padding:4px 4px 4px 4px;margin:2px 2px 2px 2px ;height:136px ;width:35% ;border:1px solid gainsboro;float:left;">      
+                <div style="float: left;width: 84%;">
+                  <fieldset>
+                    <legend style="font-size: 14px;">Ajouter agent</legend>
+                  <div class='input-group-append' style=" margin:0px 0px ;width:170px; height: 33px;">
+                  <div class='custom-file'><input style='margin:2px 2px 0px 2px;' type='file' class='custom-file-input' id='inputGroup2' onchange='loadFilesll2(event)' >
+                 <label value='select xls-csv' style="width:153px;font-size:11px;"  class='custom-file-label' for='addaction'><div style='font-size:12px ;' ></div></label></div></div>
+                  <div class="input-group" style="height:30px;margin:2px 2px 4px 2px">  
+                    <label   style="font-size: 14px; padding :2px 2px 4px 4px;height:30px;width:165px" id='filexcel2'>data:----</label> <label style="font-size: 14px; color:brown;padding :2px 2px 4px 4px;height:30px;width:60px"  id="idl_3">--</label>   
+                  </div>
+                  <div class="btn-group d-flex">
+                    <button onclick="add_all2()" type="button" class="btn btn-outline-primary btn-sm">Ajouter</button>
+                    <button onclick="Repate_editall2()" type="button" class="btn btn-outline-warning btn-sm">Modifier</button>
+                    <button onclick = "affiche_diftab()"  type="button" class="btn btn-outline-secondary btn-sm">Control</button>
+                    <button onclick = "readAll3()" type="button" class="btn btn-outline-info btn-sm">Refresh</button>
+                   
+                </div>
+                  </fieldset>
+                 </div>      
+               </div>
+               
+               <div id="loyee_data"  style="overflow: auto; height:700px ;max-height: 750px; width: 99%; position: relative;padding:4px 4px 4px 4px;margin:2px 2px 2px 2px ;border:1px solid gainsboro;float:left;">
+               </div>     
+         </div>
+         </div>  
+         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document" height="899px">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+           <div id="print">
+            <link rel="stylesheet" href="/Print/base.min.css"/>
+            <link rel="stylesheet" href="/Print/fancy.min.css"/>
+            <link rel="stylesheet" href="/Print/main.css"/>
+            <script src="/Print/compatibility.min.js"></script>
+            <script src="/Print/theViewer.min.js"></script>
+            
+            <script>
+            try{
+           theViewer.defaultViewer = new theViewer.Viewer({});
+            }catch(e){}
+            </script>
+              <div id="sidebar"><div id="outline"></div></div>
+            <div id="page-container">
+              <div id="pf1" class="pf w0 h0" data-page-no="1"><div class="pc pc1 w0 h0"><img class="bi x0 y0 w1 h1" alt="" src="/Print/bg1.png"/><div class="t m0 x1 h2 y1 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x2 h2 y2 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y3 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h3 y4 ff1 fs1 fc0 sc0 ls0 ws0">EPE SPA  au capital  <span class="_ _0"></span>de  115.000.000.00  DA<span class="_ _0"></span>  de DA   RC<span class="_ _0"></span>  N° 02 B  18083 </div><div class="t m0 x3 h3 y5 ff1 fs1 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h4 y6 ff2 fs2 fc0 sc0 ls0 ws0">Annexe0<span class="_ _0"></span>1<span class="ff3">V.1.1 Procédure de rembo<span class="_ _0"></span>ursement des f<span class="_ _0"></span>rais engagés par l<span class="_ _0"></span>e personnel en <span class="_ _0"></span>mission à ’intéri<span class="_ _0"></span>eur du territoire na<span class="_ _0"></span>tional sur u<span class="_ _0"></span>n </span></div><div class="t m0 x3 h4 y7 ff3 fs2 fc0 sc0 ls0 ws0">rayon supérieur <span class="_ _0"></span>à 50 kilomètre <span class="_ _0"></span>du lieu de travai<span class="_ _0"></span>l<span class="ff2"> </span></div><div class="t m0 x3 h5 y8 ff4 fs3 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h6 y9 ff4 fs3 fc0 sc0 ls0 ws0">DOT: <span class="ff2" ><span id="dot_alls">ET</span> <span class="_ _0" ></span> </span></div><div class="t m0 x3 h7 ya ff4 fs4 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h6 yb ff4 fs3 fc0 sc0 ls0 ws0">DUS   : <span class="ff2" id="date_du">..date<span class="_ _0"></span>…………<span class="_ _0"></span>. </span></div><div class="t m0 x3 h2 yc ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x4 h2 yd ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 ye ff2 fs5 fc0 sc0 ls0 ws0"> Ordre de m<span class="_ _1"></span>ission  N° <span id="n_ordre"></span>  </div><div class="t m0 x5 h6 yf ff2 fs3 fc0 sc0 ls0 ws0" id="date_du2"></div><div class="t m0 x6 h8 ye ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x7 h2 y10 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y11 ff2 fs5 fc0 sc0 ls0 ws0"> <span class="_ _2"> </span> <span class="_ _3"> </span> <span class="_ _4"> </span> <span class="_ _5"> </span> <span class="_ _5"> </span> <span class="_ _5"> </span> <span class="_ _5"> </span> </div><div class="t m0 x3 h8 y12 ff2 fs5 fc0 sc0 ls0 ws0"> <span class="_ _2"> </span> <span class="_ _3"> </span> <span class="_ _4"> </span> <span class="_ _5"> </span> <span class="_ _5"> </span> <span class="_ _5"> </span> <span class="_ _5"> </span> </div><div class="t m0 x8 h9 y13 ff5 fs6 fc0 sc0 ls0 ws0">ORDRE DE MI<span class="_ _1"></span>SSION<span class="_ _1"></span> </div><div class="t m0 x4 h9 y14 ff5 fs6 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y15 ff4 fs5 fc0 sc0 ls0 ws0" >Matricule   <span class="ff2">              <span class="_ _1"></span>   : <span id="matricule_">matricule</span><span class="_ _1"></span> </span></div><div class="t m0 x3 h8 y16 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y17 ff4 fs5 fc0 sc0 ls0 ws0">Mr. (Nom<span class="_ _1"></span>, PRENOM)<span class="_ _1"></span> <span class="ff2">:  <span id="nom_prenom">nomprenom</span>  </span></div><div class="t m0 x3 h8 y18 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y19 ff4 fs5 fc0 sc0 ls0 ws0">Grade/Responsabi<span class="_ _1"></span>lité<span class="ff2"> :</span> <span class="ff2" id="grade_">grade<span class="_ _1"></span> </span></div><div class="t m0 x3 h8 y1a ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y1b ff4 fs5 fc0 sc0 ls0 ws0">Service d’attach<span class="_ _1"></span>e <span class="ff2">:   <span id="attache_">attache</span><span class="_ _1"></span> </span></div><div class="t m0 x3 h8 y1c ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y1d ff4 fs5 fc0 sc0 ls0 ws0">Destination <span class="ff2">:    </span></div><div class="t m0 x9 h2 y1e ff1 fs0 fc0 sc0 ls0 ws0"></div><div class="t m0 xa h8 y1d ff2 fs5 fc0 sc0 ls0 ws0" id="destin_">estination </div><div class="t m0 x3 ha y1f ff4 fs5 fc0 sc0 ls0 ws0">  </div><div class="t m0 x3 h8 y20 ff4 fs5 fc0 sc0 ls0 ws0">Motif de la mission<span class="ff2">: <span class="_ _1"></span><span id="motif_">m</span><span class="_ _1"></span></span></div><div class="t m0 x3 h8 y21 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y22 ff2 fs5 fc0 sc0 ls0 ws0">Date de Dépare<span class="_ _1"></span> </div><div class="t m0 xb hb y23 ff2 fs7 fc1 sc0 ls0 ws0">→</div><div class="c xc y24 w2 hc"><div class="t m0 xd hd y25 ff6 fs7 fc1 sc1 ls0 ws0"> </div></div><div class="t m0 xe h8 y22 ff2 fs5 fc0 sc0 ls0 ws0"><span id="date_d">22/02/2022</span>  <span class="_ _6">   </span>Heure de départ</div><div class="t m0 xf he y26 ff1 fs8 fc0 sc0 ls0 ws0">      </div><div class="c x10 y24 w3 hc"><div class="t m0 x11 he y27 ff1 fs8 fc0 sc0 ls0 ws0">H                        </div></div><div class="t m0 x12 h8 y22 ff2 fs5 fc0 sc0 ls0 ws0" ><span id="H_Depart">24</span>  <span class="_ _7"> </span>Min <span class="_ _8"> </span><span id="Min_Dep">45</span> <span></span> </div><div class="t m0 x3 hf y28 ff1 fs9 fc0 sc0 ls0 ws0"> </div><div class="c x0 y29 w4 hc"><div class="t m0 x13 h8 y2a ff2 fs5 fc0 sc0 ls0 ws0">Date de Retour        <span class="_ _1"></span>                                 <span class="_ _1"></span>            </div></div><div class="t m0 xb hb y2b ff2 fs7 fc1 sc0 ls0 ws0">→</div><div class="t m0 x14 h8 y2c ff2 fs5 fc1 sc0 ls0 ws0"> </div><div class="t m0 xe h8 y2d ff2 fs5 fc0 sc0 ls0 ws0"><span id="date_r">21/02/2022</span> <span class="_ _6"> </span>Heure de retour     <span class="_ _1"></span> </div><div class="t m0 x15 he y2e ff1 fs8 fc0 sc0 ls0 ws0">H</div><div class="t m0 x16 h8 y2d ff2 fs5 fc0 sc0 ls0 ws0"> <span class="_ _9"> </span><span id="Heure_Ret">24</span>  <span class="_ _7"> </span> Min <span class="_ _a"> </span><span id="Min_Ret">30</span>  </div><div class="t m0 x3 h8 y2f ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y30 ff2 fs5 fc0 sc0 ls0 ws0">                                   <span class="_ _1"></span>                               <span class="_ _1"></span>                      <span class="_ _1"></span>                      <span class="_ _1"></span>               </div><div class="c x17 y31 w5 h10"><div class="t m0 x18 h8 y32 ff2 fs5 fc0 sc0 ls0 ws0">                             <span class="_ _1"></span>                      <span class="_ _1"></span>                      <span class="_ _1"></span>                      <span class="_ _1"></span>                              </div></div><div class="t m0 x3 ha y33 ff4 fs5 fc0 sc0 ls0 ws0">Moyen de transpo<span class="_ _1"></span>rt           </div><div class="t m0 x19 h11 y34 ff7 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 he y35 ff1 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h12 y36 ff8 fsa fc0 sc0 ls0 ws0">o<span class="ff2"> </span></div><div class="t m0 x1a h8 y37 ff2 fs5 fc0 sc0 ls0 ws0">Véhicule de serv<span class="_ _1"></span>ice  </div><div class="t m0 x3 h12 y38 ff8 fsa fc0 sc0 ls0 ws0">o<span class="ff2"> </span></div><div class="t m0 x1a h8 y39 ff2 fs5 fc0 sc0 ls0 ws0">Autre mo<span class="_ _1"></span>yens de transport dont <span class="_ _1"></span>le dépenses sont<span class="_ _1"></span> prises en charge<span class="_ _1"></span> par l’entre<span class="_ _1"></span>prise. </div><div class="t m0 x3 h12 y3a ff8 fsa fc0 sc0 ls0 ws0">o<span class="ff2"> </span></div><div class="t m0 x1a h8 y3b ff2 fs5 fc0 sc0 ls0 ws0">Moyens de transp<span class="_ _1"></span>ort dont l<span class="_ _1"></span>es dépenses sont <span class="_ _1"></span>prises en<span class="_ _1"></span> charge par le tra<span class="_ _1"></span>vailleur. </div><div class="t m0 x3 h12 y3c ff8 fsa fc0 sc0 ls0 ws0">o<span class="ff2"> </span></div><div class="t m0 x1a h8 y3d ff2 fs5 fc0 sc0 ls0 ws0">Utilisation exception<span class="_ _1"></span>nel du véhicul<span class="_ _1"></span>e Personnel,<span class="_ _1"></span> à la dem<span class="_ _1"></span>ande de la hiérarchie.   <span class="_ _1"></span>   </div><div class="t m0 x3 h8 y3e ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y3f ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y40 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y41 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y42 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h13 y43 ff2 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h13 y44 ff2 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h14 y45 ff4 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1b h15 y46 ff5 fsb fc0 sc0 ls0 ws0"><span class="_ _1"></span> <span class="_ _1"></span><span class="_ _1"></span></div><div class="t m0 x3 h2 y47 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y48 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y49 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y4a ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y4b ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y4c ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y4d ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y4e ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1 h16 y4f ff7 fs3 fc0 sc0 ls0 ws0">Le Responsable <span class="_ _0"></span>hiérarchiq<span class="_ _0"></span>ue direct a<span class="_ _0"></span>yants ordon<span class="_ _0"></span>né la m<span class="_ _0"></span>ission :</div><div class="t m0 x1c h13 y50 ff2 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h13 y51 ff2 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h13 y52 ff2 fs8 fc0 sc0 ls0 ws0">Nom Prénom  <span class="_ _b"> </span>   Qualité   <span class="_ _c"> </span> </div><div class="t m0 x1d h13 y53 ff2 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h13 y54 ff2 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1e h13 y55 ff2 fs8 fc0 sc0 ls0 ws0">Fait à ELTARF le </div><div class="t m0 x1f h17 y56 ff4 fs8 fc0 sc0 ls0 ws0">Cachet  et Signature</div><div class="t m0 x20 h2 y57 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m1 x21 h18 y58 ff9 fsc fc0 sc0 ls0 ws0"> </div><div class="c x22 y59 w6 h19"><div class="t m2 x17 h1a y5a ff9 fsd fc0 sc0 ls0 ws0"> </div></div></div><div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div></div>
+          <div id="pf2" class="pf w0 h0" data-page-no="2"><div class="pc pc2 w0 h0"><img class="bi x23 y5b w7 h1b" alt="" src="Print/bg2.png"/><div class="c x24 y5c w8 h1c"><div class="t m0 x25 h14 y5d ff4 fs0 fc0 sc0 ls0 ws0">Prise en charge </div></div><div class="t m0 x1d h2 y5e ff1 fs0 fc0 sc0 ls0 ws0">Hebergement    -    Restauration    -    Transport    -                  Oui </div><div class="t m0 x1d h8 y5f ff2 fs5 fc0 sc0 ls0 ws0">Non                             <span class="_ _1"></span>                 <span class="_ _1"></span>                                   <span class="_ _1"></span>                     <span class="_ _1"></span> </div><div class="t m0 x1d h8 y60 ff2 fs5 fc0 sc0 ls0 ws0">                                   <span class="_ _1"></span>                               <span class="_ _1"></span>                      <span class="_ _1"></span>                    Ut<span class="_ _1"></span>ilisation véhi<span class="_ _1"></span>cule personnel <span class="_ _1"></span> </div><div class="t m0 x1d h8 y61 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h8 y62 ff2 fs5 fc0 sc0 ls0 ws0">Nombre de repas   <span class="_ _1"></span>                                   <span class="_ _1"></span>                   <span class="_ _1"></span>Nom<span class="_ _1"></span>bre de nuitée                  <span class="_ _1"></span>                          <span class="_ _1"></span> </div><div class="t m0 x1d h8 y63 ff2 fs5 fc0 sc0 ls0 ws0">Pris en charge             <span class="_ _1"></span>                             <span class="_ _1"></span>          </div><div class="t m0 x26 h1d y64 ff4 fs1 fc0 sc0 ls0 ws0">Compte rendu du<span class="_ _0"></span>  travailleuray<span class="_ _0"></span>ant effectué la miss<span class="_ _0"></span>ion :<span class="ff5"> </span></div><div class="t m0 x3 h2 y65 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y66 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y67 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y68 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y69 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y6a ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y6b ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y6c ff1 fs0 fc0 sc0 ls0 ws0">² </div><div class="t m0 x3 h2 y6d ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y6e ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y6f ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y70 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y71 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y72 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y73 ff1 fs0 fc0 sc0 ls0 ws0"> <span class="_ _d"> </span> </div><div class="t m0 x3 h2 y74 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y75 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y76 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y77 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y78 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y79 ff2 fs5 fc0 sc0 ls0 ws0">Nord                Sud<span class="_ _1"></span>                                   <span class="_ _1"></span>               Nor<span class="_ _1"></span>d                Sud  <span class="_ _1"></span>                                       <span class="_ _1"></span>         <span class="_ _1"></span> </div><div class="t m0 x3 h8 y7a ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y7b ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h8 y7c ff2 fs5 fc0 sc0 ls0 ws0">                                   <span class="_ _1"></span>                               <span class="_ _1"></span>                      <span class="_ _1"></span> Prise en char<span class="_ _1"></span>ge        </div><div class="t m0 x3 h2 y7d ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y7e ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y7f ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y80 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y81 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y82 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y83 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y84 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y85 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y86 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y87 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y88 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y89 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y8a ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y8b ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y8c ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y8d ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y8e ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y8f ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y90 ff1 fs0 fc0 sc0 ls0 ws0">Validation du Chef immédiat : (n+1) </div><div class="t m0 x3 h2 y91 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y92 ff1 fs0 fc0 sc0 ls0 ws0">Validation du Responsable : (n+2) </div><div class="t m0 x3 h2 y93 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y94 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y95 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y96 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y97 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y98 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y99 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x3 h2 y9a ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="c x27 y9b w9 h1e"><div class="t m0 x25 h2 y9c ff1 fs0 fc0 sc0 ls0 ws0"> </div></div><div class="c x28 y9d w9 h1e"><div class="t m0 x25 h2 y9c ff1 fs0 fc0 sc0 ls0 ws0"> </div></div><div class="c x27 y9e w9 h1f"><div class="t m0 x25 h2 y9f ff1 fs0 fc0 sc0 ls0 ws0"> </div></div><div class="c x29 y9e w9 h1f"><div class="t m0 x25 h2 y9f ff1 fs0 fc0 sc0 ls0 ws0"> </div></div><div class="t m0 x1d h8 ya0 ff2 fs5 fc0 sc0 ls0 ws0"> Date d’arrivée sur <span class="_ _1"></span>les lieux de <span class="_ _1"></span>la mission     <span class="_ _e"> </span>         Date de ret<span class="_ _1"></span>our      </div><div class="t m0 x2a h2 ya1 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x2b h13 ya2 ff2 fs8 fc0 sc0 ls0 ws0"> </div><div class="t m0 x2b h20 ya3 ff4 fs1 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h8 ya4 ff2 fs5 fc0 sc0 ls0 ws0">En cas de circuit-<span class="_ _1"></span>villes étap<span class="_ _1"></span>es.  Du  <span class="_ _f"> </span>  Au   <span class="_ _10"> </span> </div><div class="t m0 x2c h8 ya5 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x2c h8 ya6 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x2c h8 ya7 ff2 fs5 fc0 sc0 ls0 ws0">                                   <span class="_ _1"></span>            Du  <span class="_ _f"> </span>  Au    <span class="_ _11"> </span> </div><div class="t m0 x2c h8 ya8 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x2c h8 ya9 ff2 fs5 fc0 sc0 ls0 ws0"> </div><div class="t m0 x2c h8 yaa ff2 fs5 fc0 sc0 ls0 ws0">                                   <span class="_ _1"></span>           . Du  <span class="_ _f"> </span>  Au    <span class="_ _11"> </span> </div><div class="t m0 x2c h8 yab ff2 fs5 fc0 sc0 ls0 ws0">                                   <span class="_ _1"></span>                               <span class="_ _1"></span>                      <span class="_ _1"></span>                      <span class="_ _1"></span>                Vis<span class="_ _1"></span>a de la structur<span class="_ _1"></span>e d’accueil<span class="_ _1"></span> </div><div class="c x24 yac w8 h21"><div class="t m0 x2d h8 yad ff2 fs5 fc0 sc0 ls0 ws0"> </div></div><div class="t m3 x2e h22 yae ff9 fse fc0 sc0 ls0 ws0"> </div><div class="c x2f yaf wa h23"><div class="t m3 x25 h22 yb0 ff9 fse fc0 sc0 ls0 ws0"> </div></div><div class="t m4 x30 h22 yae ff9 fse fc0 sc0 ls0 ws0"> </div><div class="c x30 yaf wb h23"><div class="t m4 x25 h22 yb0 ff9 fse fc0 sc0 ls0 ws0"> </div></div><div class="c x31 yb1 wc h24"><div class="t m5 x17 h25 yb2 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x32 yb3 wd h26"><div class="t m5 x25 h25 yb4 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x33 yb1 we h24"><div class="t m6 x17 h25 yb2 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x34 yb3 wf h26"><div class="t m6 x25 h25 yb4 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x35 yb5 wc h24"><div class="t m5 x17 h25 yb6 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x36 yb7 wd h26"><div class="t m5 x25 h25 yb8 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x37 yb5 w10 h24"><div class="t m7 x17 h25 yb6 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x38 yb7 w11 h26"><div class="t m7 x25 h25 yb8 ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x39 yb9 wc h24"><div class="t m5 x17 h25 yba ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x3a ybb wd h26"><div class="t m5 x25 h25 ybc ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x3b yb9 w12 h24"><div class="t m8 x17 h25 yba ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x3c ybb w13 h26"><div class="t m8 x25 h25 ybc ff9 fsf fc0 sc0 ls0 ws0"> </div></div><div class="c x24 ybd w8 h27"><div class="t m0 x25 h17 ybe ff4 fs8 fc0 sc0 ls0 ws0">Nature et description de la mission effectuée </div></div><div class="t m0 x1d h28 ybf ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 yc0 ff2 fsb fc0 sc0 ls0 ws0">……………………………………………………<span class="_ _1"></span>………………………………<span class="_ _1"></span>………………………………<span class="_ _1"></span>………………………..<span class="_ _1"></span> </div><div class="t m0 x1d h28 yc1 ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 yc2 ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 yc3 ff2 fsb fc0 sc0 ls0 ws0">……………………………………………………<span class="_ _1"></span>……………………</div><div class="c x24 ybd w8 h27"><div class="t m0 x3d h28 yc4 ff2 fsb fc0 sc0 ls0 ws0">                                <span class="_ _1"></span>                                                        <span class="_ _1"></span>                                     </div></div><div class="t m0 x1d h28 yc5 ff2 fsb fc0 sc0 ls0 ws0">……………………………………………………<span class="_ _1"></span>…………….. </div><div class="t m0 x1d h28 yc6 ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 yc7 ff2 fsb fc0 sc0 ls0 ws0">……………………………………………………<span class="_ _1"></span>………………………………<span class="_ _1"></span>………………………………<span class="_ _1"></span>………………………..<span class="_ _1"></span> </div><div class="t m0 x1d h28 yc8 ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 yc9 ff2 fsb fc0 sc0 ls0 ws0">……………………………………………………<span class="_ _1"></span>…………………<span class="_ _1"></span> </div><div class="t m0 x1d h28 yca ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 ycb ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 ycc ff2 fsb fc0 sc0 ls0 ws0"> </div><div class="t m0 x1d h28 ycd ff2 fsb fc0 sc0 ls0 ws0">……………………………………………………<span class="_ _1"></span>……………… </div><div class="c x24 ybd w8 h27"><div class="t m0 x3e h29 yce ff4 fsb fc0 sc0 ls0 ws0">Signé le travailleur concer<span class="_ _1"></span>né : </div></div><div class="c x24 ycf w8 h2a"><div class="t m0 x25 h8 yd0 ff2 fs5 fc0 sc0 ls0 ws0">Montant de l’av<span class="_ _1"></span>ance en DA<span class="_ _1"></span>                  <span class="_ _12"> </span>  Date d’attribution      </div><div class="t m0 x3f h2 yd1 ff1 fs0 fc0 sc0 ls0 ws0"> </div></div><div class="t m9 x40 h2b yd2 ff9 fs10 fc0 sc0 ls0 ws0"> </div><div class="c x40 yd3 w14 h1e"><div class="t m9 x25 h2b yd4 ff9 fs10 fc0 sc0 ls0 ws0"> </div></div><div class="t m9 x41 h2b yd2 ff9 fs10 fc0 sc0 ls0 ws0"> </div><div class="c x41 yd3 w14 h1e"><div class="t m9 x25 h2b yd4 ff9 fs10 fc0 sc0 ls0 ws0"> </div></div><div class="t m0 xd h8 yd5 ff2 fs5 fc0 sc0 ls0 ws0">Mission annulée <span class="_ _1"></span>le      <span class="_ _e"> </span>        Retour avant term<span class="_ _1"></span>e prévu en date du     <span class="_ _e"> </span> </div><div class="t m0 x42 h17 yd6 ff4 fs8 fc0 sc0 ls0 ws0">Le Premier responsable de la structure / Responsable hiérarchique. </div><div class="t m0 x43 h8 yd7 ff2 fs5 fc0 sc0 ls0 ws0">                                   <span class="_ _1"></span>                               <span class="_ _1"></span>                      <span class="_ _1"></span>                      <span class="_ _1"></span>     Cachet da<span class="_ _1"></span>te et signature</div><div class="t m0 x44 h20 yd8 ff4 fs1 fc0 sc0 ls0 ws0"> </div><div class="t m0 xd h2 yd9 ff1 fs0 fc0 sc0 ls0 ws0"> </div><div class="t ma x45 h22 yda ff9 fse fc0 sc0 ls0 ws0"> </div><div class="c x26 ydb w15 h23"><div class="t ma x25 h22 ydc ff9 fse fc0 sc0 ls0 ws0"> </div></div><div class="t m3 x46 h22 yda ff9 fse fc0 sc0 ls0 ws0"> </div><div class="c x47 ydb wa h23"><div class="t m3 x25 h22 ydc ff9 fse fc0 sc0 ls0 ws0"> </div></div></div><div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div></div>
+          </div>
+          <div class="loading-indicator"> </div>
+         
+           </div>
+           </div> 
+          
+            <div class="modal-footer">
+             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-outline-warning" onclick="add_all()">Save</button>
+            </div>
+          </div> 
+          </div>
+          </div>
+         </div>
+        
+         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+          <div class="modal-dialog" role="document" >
+          <div class="modal-content">
+            <div class="modal-header">
+             <label id="filexcel02" style="font-size:15px;float:left;margin-right:90px ;font-weight: bold;color:#114949">--/--</label><h5 class="modal-title" id="exampleModalLabel">ORDRE GROUPE</h5><button onclick="print_allpage();" class="btn btn-outline-info btn-sm" type="button" style="margin-left:100px;">Print_all</button>
+              <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="height:510px;">
+              <div  style="position: relative;padding:4px 4px 4px 4px;margin:2px 2px 2px 2px ;height:fit-content ;width:100% ;border:1px solid gainsboro;float:left;">  
+              <div class="input-group" style="height:30px;margin:2px 2px 4px 2px"> 
+                <label   style="font-size: 13px; padding :2px 2px 4px 4px;height:30px;width:45px">Nom</label>  
+                <input    class="form-control" id="nom_group" style="font-size: 14px;width:160px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;"  list="service110"  placeholder="..." >
+               <datalist id="service110">
+               </datalist>
+               <input onclick="get_ordre();"   class="form-control" id="ordre_group" style="font-size: 14px;width:60px;padding:0px 0px 0px 12px;height:30px;border-radius: 4px 4px 4px 4px;" >     
+               <button onclick = "dell();get_ordre();" style="border-radius:0px 4px 4px 0px ; padding:0px 2px 0px 2px;width:71px;height:30px;font-size:13px;" class="btn btn-outline-danger btn-sm" type="button">dell_sel</button>
+             
+               <button onclick = "ajouter(); getgroupe('table-fac');" style="border-radius:0px 4px 4px 0px ; padding:0px 2px 0px 2px;width:71px;height:30px;font-size:13px;" class="btn btn-outline-secondary btn-sm" type="button">Add_to_list</button>
+               </div>  <!-- end --> 
+               </div>
+               <div id="div-table" style="overflow: auto;max-height: 430px;height:430px;max-width:100%;"><table id="table-fac" style="width: 770px;"  class="table table-hover small-text" >
+                <thead style="background-color:#cfd4d4;color:#4b4949;padding: 0px 0px;">
+                <tr class="tr-header">
+                <th width="10px"><input type="checkbox" id="chkParent" /></th>
+                <th width="70px">NumOrdre</th>
+                <th width="220px">nom prenom</th>
+                <th width="100px">Matricule</th>
+                <th width="90px"> <button onclick = "add_group()" style="padding:2px 2px 0px 2px;width:71px;height:28px;font-size:14px;border:1px solid #cfd4d4;font-weight: bold;" class="btn btn-outline-primary btn-sm" type="button">SAVE ALL</button>
+                </th>
+                <th width="200px">service</th>
+                <th width="200px">grade</th>
+              
+                </tr> </thead>
+                <tbody class="table_tbody">
+                  <tr>
+                     <!-- Table DATA --> 
+                  </tr>
+              </tbody>
+             </table></div>
+              </div>        
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div> 
+          </div>
+          </div>
+         </div>
+         <!-- include header -->
+<%- include('_footer') %>
+<!-- /include header -->
